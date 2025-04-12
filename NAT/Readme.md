@@ -20,13 +20,17 @@ Each type of NAT translates private IPs to public IPs differently, essential for
 
 ## File Structure
 
-NAT-Simulation/
+```bash
+
+NAT/
 │
 ├── Static NAT.py # Static NAT Simulation
 ├── Dynamic NAT.py # Dynamic NAT Simulation
 ├── PAT NAT Overload.py # PAT (Port Address Translation) Simulation
 └── README.md # Project Overview and Explanation
 
+
+```
 ## Types of NAT Simulation
 
 ### 1. Static NAT (One-to-One Mapping)
