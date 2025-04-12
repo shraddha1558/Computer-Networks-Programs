@@ -24,6 +24,47 @@ python dhcp_server.py
 ```bash
 python dhcp_client.py
 ```
+## One-Liners: Question on given codes.
+
+| Question                          | Answer                                                        |
+|----------------------------------|---------------------------------------------------------------|
+| What protocol is used?           | UDP (`socket.SOCK_DGRAM`)                                     |
+| Can TCP be used?                 | No, DHCP needs UDP for broadcast and stateless setup         |
+| What does 127.0.0.1 mean?        | Loopback IP (localhost, same machine)                         |
+| Can I test this over LAN?        | Yes, change `SERVER_IP` to your local IP (e.g., `192.168.x.x`)|
+| Can I assign real IPs?           | Not directly; this is just a simulation                       |
+| What is port 6767?               | Custom port; changeable if needed                             |
+| Can this assign IP to devices?   | No, it's a manual simulation for learning only                |
+| What's the purpose of sleep(1)?  | Simulates delay before DHCPREQUEST                            |
+| Why use `settimeout(10)`?        | So the server/client doesn't hang forever                     |
+| Can this be extended?            | Yes, add features like IP release, renewal, lease timers etc. |
+
+
+## Brief Introduction : Concept
+
+Dynamic Host Configuration Protocol (DHCP) is an **application-layer protocol** based on the **client-server paradigm**, designed to assist the **TCP/IP protocol suite at the network layer**.
+
+It automates the assignment of IP addresses and essential network parameters, making it a widely adopted **plug-and-play protocol** in modern networks.
+
+### Key Functions of DHCP:
+- **Permanent IP Assignment:** Network managers can assign static IPs to specific devices like routers or servers.
+- **Temporary IP Assignment:** Enables devices (e.g., a traveler’s laptop in a hotel) to obtain an IP dynamically for a limited time.
+- **Efficient IP Utilization:** ISPs can provide services to more households than available IPs by dynamically allocating IPs based on demand (e.g., 1000 IPs serving 4000 customers with non-overlapping usage).
+
+### Essential Information Provided by DHCP:
+To operate in a network, a host typically needs:
+- **IP Address**
+- **Subnet Mask (Network Prefix)**
+- **Default Router (Gateway) Address**
+- **DNS Server Address**
+
+DHCP simplifies this configuration by automatically providing all four values to the host.
+
+### Protocol Mechanics:
+- DHCP uses **UDP** and operates on two well-known ports:
+  - **Port 67** (Server)
+  - **Port 68** (Client)
+- Both ports are fixed, as the client receives **broadcasted replies** from the server. Since broadcast messages are not forwarded across routers, they are delivered to **all hosts within the same network**.
 
 ##  In Real Networks
 
@@ -47,17 +88,7 @@ python dhcp_client.py
 | Use case                 | Real-time networking                 | Educational & conceptual demo     |
 
 
-## One-Liners: 
 
-| Question                          | Answer                                                        |
-|----------------------------------|---------------------------------------------------------------|
-| What protocol is used?           | UDP (`socket.SOCK_DGRAM`)                                     |
-| Can TCP be used?                 | No, DHCP needs UDP for broadcast and stateless setup         |
-| What does 127.0.0.1 mean?        | Loopback IP (localhost, same machine)                         |
-| Can I test this over LAN?        | Yes, change `SERVER_IP` to your local IP (e.g., `192.168.x.x`)|
-| Can I assign real IPs?           | Not directly; this is just a simulation                       |
-| What is port 6767?               | Custom port; changeable if needed                             |
-| Can this assign IP to devices?   | No, it's a manual simulation for learning only                |
-| What's the purpose of sleep(1)?  | Simulates delay before DHCPREQUEST                            |
-| Why use `settimeout(10)`?        | So the server/client doesn't hang forever                     |
-| Can this be extended?            | Yes, add features like IP release, renewal, lease timers etc. |
+
+> 📚 *Reference: Behrouz A. Forouzan, "Data Communications and Networking", 5th Edition, Chapter 23 - Dynamic Host Configuration Protocol (DHCP)*
+
