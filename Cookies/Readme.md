@@ -33,11 +33,36 @@ This simple project helps you **understand the concept of HTTP Cookies** by obse
 
 ---
 
-## What's Happening in This Example?
+##  How the Code Works
 
-- A username (like **Shraddha**) is stored as a cookie.
-- When revisiting the site, the server reads this cookie and greets the user.
-- After deleting the cookie, the server no longer recognizes the user.
+###  1. Server Side – Flask App
+
+- The Flask app provides three endpoints:
+  - `/` — Displays a greeting.
+  - `/set_cookie/<username>` — Sets a cookie for the given username.
+  - `/delete_cookie` — Deletes the existing username cookie.
+
+- **Cookie Logic**:
+  - When a user visits `/set_cookie/Shraddha`, a cookie is set with:
+    - Key: `username`
+    - Value: `Shraddha`
+  - On accessing `/`, the server checks for this cookie.
+    - If present → Greets: `Hello, Shraddha!`
+    - If not → Greets: `Hello, guest!`
+
+- When `/delete_cookie` is called:
+  - The server tells the browser/client to delete the `username` cookie.
+
+---
+
+###  2. Client Side – Python Requests
+
+- Uses a **`requests.Session()`** object to maintain cookie state across requests.
+- Performs 4 actions:
+  1. Set cookie for `Shraddha`
+  2. Access `/` — Receives personalized greeting
+  3. Delete the cookie
+  4. Access `/` again — Receives default guest message
 
 ---
 
